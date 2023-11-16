@@ -6,59 +6,268 @@
 |Pascal Roger Junior Tauran     |5025211072 |
 |Mochammad Naufal Ihza Syahzada |5025211260 |
 
-Tapology:<br>
-![Modul3Tapology]()
-
-### Aura
-
-### Revolte
-
-### Richter
-
-### Lawine
-
-### Linle
-
-### Lugner
-
-### Sein
-
-### Stark
-
-### Freiren
-
-### Flamme
-
-### Fern
-
-### Himmel
-
-### Heiter
-
-### Denken
-
-### Elsen
-
 ## Number 1
 ```
 Semua CLIENT harus menggunakan konfigurasi dari DHCP Server.
+```
+
+Tapology:<br>
+![Modul3Tapology](https://cdn.discordapp.com/attachments/824131614073683968/1174607666132291614/image.png?ex=656835a2&is=6555c0a2&hm=99e647e784aa83f2a45506418f22f9f5a69d66c83bd960e8a05eba0917ac405c&)
+
+### Aura
+```bash
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 10.62.1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 10.62.2.1
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 10.62.3.1
+	netmask 255.255.255.0
+
+auto eth4
+iface eth4 inet static
+	address 10.62.4.1
+	netmask 255.255.255.0
+```
+### Revolte
+```bash
+auto eth0
+iface eth0 inet dhcp
+#	address 10.62.3.2
+#	netmask 255.255.255.0
+#	gateway 10.62.3.1
+```
+### Richter
+```bash
+auto eth0
+iface eth0 inet dhcp
+#	address 10.62.3.3
+#	netmask 255.255.255.0
+#	gateway 10.62.3.1
+```
+### Lawine
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.3.4
+	netmask 255.255.255.0
+	gateway 10.62.3.1
+```
+### Linle
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.3.5
+	netmask 255.255.255.0
+	gateway 10.62.3.1
+```
+### Lugner
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.3.6
+	netmask 255.255.255.0
+	gateway 10.62.3.1
+```
+### Sein
+```bash
+auto eth0
+iface eth0 inet dhcp
+#	address 10.62.4.2
+#	netmask 255.255.255.0
+#	gateway 10.62.4.1
+```
+### Stark
+```bash
+auto eth0
+iface eth0 inet dhcp
+#	address 10.62.4.3
+#	netmask 255.255.255.0
+#	gateway 10.62.4.1
+```
+### Freiren
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.4.4
+	netmask 255.255.255.0
+	gateway 10.62.4.1
+```
+### Flamme
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.4.5
+	netmask 255.255.255.0
+	gateway 10.62.4.1
+```
+### Fern
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.4.6
+	netmask 255.255.255.0
+	gateway 10.62.4.1
+```
+### Himmel
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.1.2
+	netmask 255.255.255.0
+	gateway 10.62.1.1
+```
+### Heiter
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.1.3
+	netmask 255.255.255.0
+	gateway 10.62.1.1
+```
+### Denken
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.2.2
+	netmask 255.255.255.0
+	gateway 10.62.2.1
+```
+### Elsen
+```bash
+auto eth0
+iface eth0 inet static
+	address 10.62.2.3
+	netmask 255.255.255.0
+	gateway 10.62.2.1
 ```
 ## Number 2
 ```
 Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.16 - [prefix IP].3.32 dan [prefix IP].3.64 - [prefix IP].3.80 (2)
 ```
+- `/etc/dhcp/dhcpd.conf` `Himmel`
+```bash
+subnet 10.62.3.0 netmask 255.255.255.0 {
+    range 10.62.3.16 10.62.3.32;
+    range 10.62.3.64 10.62.3.80;
+    option routers 10.62.3.1;
+    option broadcast-address 10.62.3.255;
+    option domain-name-servers 10.62.1.3;
+    default-lease-time 600;
+    max-lease-time 7200; 
+}
+```
+- `bashrc` `Himmel`
+![bashrc_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174694205751300096/image.png?ex=6568863b&is=6556113b&hm=8db1cf31e064bc55c246cadea5acc3844f4aaa6270e5b86a68bceedf08323106&)
+
+- `terminal` `Himmel`
+![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
+
 ## Number 3
 ```
 Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 (3)
 ```
+- `/etc/dhcp/dhcpd.conf`
+```bash
+subnet 10.62.4.0 netmask 255.255.255.0 {
+    range 10.62.4.12 10.62.4.20;
+    range 10.62.4.160 10.62.4.168;
+    option routers 10.62.4.1;
+    option broadcast-address 10.62.4.255;
+    option domain-name-servers 10.62.1.3;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+```
+- `bashrc` `Himmel`
+![bashrc_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174694205751300096/image.png?ex=6568863b&is=6556113b&hm=8db1cf31e064bc55c246cadea5acc3844f4aaa6270e5b86a68bceedf08323106&)
+
+- `terminal` `Himmel`
+![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
+
 ## Number 4
 ```
 Client mendapatkan DNS dari Heiter dan dapat terhubung dengan internet melalui DNS tersebut (4)
 ```
+- `/etc/dhcp/dhcpd.conf`
+```bash
+echo subnet 10.62.1.0 netmask 255.255.255.0 {
+}
+
+subnet 10.62.4.0 netmask 255.255.255.0 {
+    range 10.62.4.12 10.62.4.20;
+    range 10.62.4.160 10.62.4.168;
+    option routers 10.62.4.1;
+    option broadcast-address 10.62.4.255;
+    option domain-name-servers 10.62.1.3;
+    #default-lease-time 600;
+    #max-lease-time 7200;
+}
+
+subnet 10.62.3.0 netmask 255.255.255.0 {
+    range 10.62.3.16 10.62.3.32;
+    range 10.62.3.64 10.62.3.80;
+    option routers 10.62.3.1;
+    option broadcast-address 10.62.3.255;
+    option domain-name-servers 10.62.1.3;
+    #default-lease-time 600;
+    #max-lease-time 7200; 
+}
+```
+- `bashrc` `Aura`
+![bashrc_Aura](https://media.discordapp.net/attachments/824131614073683968/1174694611910918277/image.png?ex=6568869c&is=6556119c&hm=e6127fe4977272e59f47d5fa586c09604e693efa7e38bee0f6f6c135c425ca8b&=)
+
+- `terminal` `Aura`
+![terminal_Aura](https://media.discordapp.net/attachments/824131614073683968/1174695342793564200/image.png?ex=6568874a&is=6556124a&hm=e4aabcfa8605fa1f8d57a0536b8ba7435cfabe3bdfa898b88b506943c04276bf&=)
+
+- `bashrc` `Heiter`
+![bashrc_Heiter](https://media.discordapp.net/attachments/824131614073683968/1174694751908397077/image.png?ex=656886bd&is=655611bd&hm=93beb0c6fcc6b6aaf5b6f7c1832bebd7611914ce5fab5fa5037201d8418e1cdd&=)
+
+- `terminal` `Heiter`
+![terminal_Heiter](https://media.discordapp.net/attachments/824131614073683968/1174695739423736010/image.png?ex=656887a9&is=655612a9&hm=c1c50475aa4619ec787550388455fa73cabe0f65b909a657010d63c969d9cd15&=)
+
+- `terminal` `Client`
+![terminal_client](https://media.discordapp.net/attachments/824131614073683968/1174696101182447716/image.png?ex=656887ff&is=655612ff&hm=9c1356f9b7d4319c221140d8e90da41e3348cb939afac1962d7a438b5f1d2df3&=)
 ## Number 5
 ```
 Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch3 selama 3 menit sedangkan pada client yang melalui Switch4 selama 12 menit. Dengan waktu maksimal dialokasikan untuk peminjaman alamat IP selama 96 menit (5)
 ```
+- `/etc/dhcp/dhcpd.conf`
+```bash
+echo subnet 10.62.1.0 netmask 255.255.255.0 {
+}
+
+subnet 10.62.4.0 netmask 255.255.255.0 {
+    # range 10.62.4.12 10.62.4.20;
+    # range 10.62.4.160 10.62.4.168;
+    # option routers 10.62.4.1;
+    # option broadcast-address 10.62.4.255;
+    # option domain-name-servers 10.62.1.3;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+
+subnet 10.62.3.0 netmask 255.255.255.0 {
+    # range 10.62.3.16 10.62.3.32;
+    # range 10.62.3.64 10.62.3.80;
+    # option routers 10.62.3.1;
+    # option broadcast-address 10.62.3.255;
+    # option domain-name-servers 10.62.1.3;
+    default-lease-time 600;
+    max-lease-time 7200; 
+}
+```
+
 ## Number 6
 ```
 Pada masing-masing worker PHP, lakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3. (6)
