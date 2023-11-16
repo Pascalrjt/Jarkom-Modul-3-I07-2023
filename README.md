@@ -167,10 +167,10 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
     max-lease-time 7200; 
 }
 ```
-- `bashrc` `Himmel`
+- `bashrc` `Himmel` <br>
 ![bashrc_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174694205751300096/image.png?ex=6568863b&is=6556113b&hm=8db1cf31e064bc55c246cadea5acc3844f4aaa6270e5b86a68bceedf08323106&)
 
-- `terminal` `Himmel`
+- `terminal` `Himmel` <br>
 ![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
 
 ## Number 3
@@ -189,10 +189,10 @@ subnet 10.62.4.0 netmask 255.255.255.0 {
     max-lease-time 7200;
 }
 ```
-- `bashrc` `Himmel`
+- `bashrc` `Himmel` <br>
 ![bashrc_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174694205751300096/image.png?ex=6568863b&is=6556113b&hm=8db1cf31e064bc55c246cadea5acc3844f4aaa6270e5b86a68bceedf08323106&)
 
-- `terminal` `Himmel`
+- `terminal` `Himmel` <br>
 ![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
 
 ## Number 4
@@ -224,19 +224,19 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
     #max-lease-time 7200; 
 }
 ```
-- `bashrc` `Aura`
+- `bashrc` `Aura` <br>
 ![bashrc_Aura](https://media.discordapp.net/attachments/824131614073683968/1174694611910918277/image.png?ex=6568869c&is=6556119c&hm=e6127fe4977272e59f47d5fa586c09604e693efa7e38bee0f6f6c135c425ca8b&=)
 
-- `terminal` `Aura`
+- `terminal` `Aura` <br>
 ![terminal_Aura](https://media.discordapp.net/attachments/824131614073683968/1174695342793564200/image.png?ex=6568874a&is=6556124a&hm=e4aabcfa8605fa1f8d57a0536b8ba7435cfabe3bdfa898b88b506943c04276bf&=)
 
-- `bashrc` `Heiter`
+- `bashrc` `Heiter` <br>
 ![bashrc_Heiter](https://media.discordapp.net/attachments/824131614073683968/1174694751908397077/image.png?ex=656886bd&is=655611bd&hm=93beb0c6fcc6b6aaf5b6f7c1832bebd7611914ce5fab5fa5037201d8418e1cdd&=)
 
-- `terminal` `Heiter`
+- `terminal` `Heiter` <br>
 ![terminal_Heiter](https://media.discordapp.net/attachments/824131614073683968/1174695739423736010/image.png?ex=656887a9&is=655612a9&hm=c1c50475aa4619ec787550388455fa73cabe0f65b909a657010d63c969d9cd15&=)
 
-- `terminal` `Client`
+- `terminal` `Client` <br>
 ![terminal_client](https://media.discordapp.net/attachments/824131614073683968/1174696101182447716/image.png?ex=656887ff&is=655612ff&hm=9c1356f9b7d4319c221140d8e90da41e3348cb939afac1962d7a438b5f1d2df3&=)
 ## Number 5
 ```
