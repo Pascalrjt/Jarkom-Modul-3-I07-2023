@@ -373,6 +373,66 @@ Linie, 2GB, 2vCPU, dan 50 GB SSD.
 Lugner 1GB, 1vCPU, dan 25 GB SSD.
 aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second. (7)
 ```
+
+- `DNS Server`
+```sh
+@       IN      A       192.173.2.3     ; IP Load Balancer 
+www     IN      CNAME   riegel.canyon.i07.com.
+```
+```sh
+@       IN      A       192.173.2.3     ; IP Load Balancer 
+www     IN      CNAME   granz.channel.i07.com.
+```
+```sh
+echo 'options {
+      directory "/var/cache/bind";
+      forwarders {
+              192.168.122.1;
+      };
+      // dnssec-validation auto;
+      allow-query{any;};
+      auth-nxdomain no;
+      listen-on-v6 { any; };
+}; ' >/etc/bind/named.conf.options
+```
+- `Eisen`
+```sh
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/lb_php
+
+echo ' upstream worker {
+    server 10.62.3.1;
+    server 10.62.3.2;
+    server 10.62.3.3;
+}
+
+server {
+    listen 80;
+    server_name granz.channel.i07.com www.granz.channel.i07.com;
+
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        proxy_pass http://worker;
+    }
+} ' > /etc/nginx/sites-available/lb_php
+
+ln -s /etc/nginx/sites-available/lb_php /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+service nginx restart
+```
+- delete or command this line on every worker (dhcp)
+```sh
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+```
+- run `ab -n 1000 -c 100 http://www.granz.channel.i07.com/ `
+
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/9f150009-ecd0-42fe-8dba-121680c2af0d)
+
 ## Number 8
 ```
 Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
@@ -381,6 +441,8 @@ Report hasil testing pada Apache Benchmark
 Grafik request per second untuk masing masing algoritma. 
 Analisis (8)
 ```
+
+-
 ## Number 9
 ```
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire. (9)
