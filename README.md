@@ -520,6 +520,7 @@ server {
 ```
 - run command `htpasswd -c /etc/nginx/rahasisakita/.htpasswd netics` dan juga isi password dengan `ajkyyy`
 - hasil
+
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/95e82dd0-c0fb-4b90-a4d3-f8ff70b9f884)
 
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/2bb8c6f1-6b1f-45a7-a21f-1dea5f86a92b)
@@ -543,6 +544,16 @@ server {
 }
 ```
 - Untuk testing, pastikan ip client diubah menjadi static dan disesuaikan dengan ip yang berada diatas
+```sh
+// example
+auto eth0
+iface eth0 inet static
+	address 10.62.3.111
+	netmask 255.255.255.0
+	gateway 10.62.3.1
+```
+
+- `client` run command `lynx 10.62.2.3` yang dimana merupakan ip load balancer
 ## Number 12
 ```
 Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. (12) hint: (fixed in dulu clinetnya)
