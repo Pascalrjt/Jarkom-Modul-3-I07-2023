@@ -482,6 +482,7 @@ echo ' upstream worker {
     server 10.62.3.3;
 }
 ```
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/af8fc563-73bc-4e01-9666-e9749e026377)
 
 ## Number 9
 ```
