@@ -155,6 +155,9 @@ iface eth0 inet static
 ```
 Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.16 - [prefix IP].3.32 dan [prefix IP].3.64 - [prefix IP].3.80 (2)
 ```
+
+Solution: <br>
+
 - `/etc/dhcp/dhcpd.conf` `Himmel`
 ```bash
 subnet 10.62.3.0 netmask 255.255.255.0 {
@@ -162,9 +165,7 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
     range 10.62.3.64 10.62.3.80;
     option routers 10.62.3.1;
     option broadcast-address 10.62.3.255;
-    option domain-name-servers 10.62.1.3;
-    default-lease-time 600;
-    max-lease-time 7200; 
+    option domain-name-servers 10.62.1.3; 
 }
 ```
 - `bashrc` `Himmel` <br>
@@ -173,10 +174,21 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
 - `terminal` `Himmel` <br>
 ![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
 
+explanation: <br>
+
+- First we run `apt-get update -y` in the `bashrc` of `Himmel` to update and `apt-get install isc-dhcp-server -y` to install `dhcp` and confirm its installation with `dhcpd --version`.
+- We then run `echo INTERFACES="eth0" > /etc/default/isc-dhcp-server` to input `INTERFACES="eth0"` to the file in `/etc/default/isc-dhcp-server`.
+- Then we edit the `dhcpd.conf` file in `/etc/dhcp/dhcpd.conf`.
+- We set the subnet to `10.62.3.0` and netmask to `255.255.255.0`.
+- We set the range from `10.62.3.16` to  `10.62.3.32` and `10.62.3.64` to `10.62.3.80` as per the question.
+- We set `option routers 10.62.3.1` according to the IP of `switch 3`.
 ## Number 3
 ```
 Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 (3)
 ```
+
+Solution: <br>
+
 - `/etc/dhcp/dhcpd.conf`
 ```bash
 subnet 10.62.4.0 netmask 255.255.255.0 {
@@ -185,8 +197,6 @@ subnet 10.62.4.0 netmask 255.255.255.0 {
     option routers 10.62.4.1;
     option broadcast-address 10.62.4.255;
     option domain-name-servers 10.62.1.3;
-    default-lease-time 600;
-    max-lease-time 7200;
 }
 ```
 - `bashrc` `Himmel` <br>
@@ -194,24 +204,24 @@ subnet 10.62.4.0 netmask 255.255.255.0 {
 
 - `terminal` `Himmel` <br>
 ![terminal_Himmel](https://cdn.discordapp.com/attachments/824131614073683968/1174695490802176040/image.png?ex=6568876d&is=6556126d&hm=09709c2b7a4a50a6ffb2870a86c649fa275f3880e72f931852b2ca8f3dba619d&)
+
+Explanation: <br>
+- We edit the `dhcpd.conf` file in `/etc/dhcp/dhcpd.conf`.
+- We set the subnet to `10.62.4.0` and netmask to `255.255.255.0`.
+- We set the range from `10.62.4.12` to  `10.62.4.20` and `10.62.4.160` to `10.62.4.168` as per the question.
+- We set `option routers 10.62.4.1` according to the IP of `switch 4`.
+- Afterwards we run `isc-dhcp-server restart` and `isc-dhcp-server status` to start and check the status of the `dhcp server` 
 
 ## Number 4
 ```
 Client mendapatkan DNS dari Heiter dan dapat terhubung dengan internet melalui DNS tersebut (4)
 ```
+
+Solution: <br>
+
 - `/etc/dhcp/dhcpd.conf`
 ```bash
 echo subnet 10.62.1.0 netmask 255.255.255.0 {
-}
-
-subnet 10.62.4.0 netmask 255.255.255.0 {
-    range 10.62.4.12 10.62.4.20;
-    range 10.62.4.160 10.62.4.168;
-    option routers 10.62.4.1;
-    option broadcast-address 10.62.4.255;
-    option domain-name-servers 10.62.1.3;
-    #default-lease-time 600;
-    #max-lease-time 7200;
 }
 
 subnet 10.62.3.0 netmask 255.255.255.0 {
@@ -219,9 +229,15 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
     range 10.62.3.64 10.62.3.80;
     option routers 10.62.3.1;
     option broadcast-address 10.62.3.255;
+    option domain-name-servers 10.62.1.3; 
+}
+
+subnet 10.62.4.0 netmask 255.255.255.0 {
+    range 10.62.4.12 10.62.4.20;
+    range 10.62.4.160 10.62.4.168;
+    option routers 10.62.4.1;
+    option broadcast-address 10.62.4.255;
     option domain-name-servers 10.62.1.3;
-    #default-lease-time 600;
-    #max-lease-time 7200; 
 }
 ```
 - `bashrc` `Aura` <br>
@@ -236,25 +252,45 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
 - `terminal` `Heiter` <br>
 ![terminal_Heiter](https://media.discordapp.net/attachments/824131614073683968/1174695739423736010/image.png?ex=656887a9&is=655612a9&hm=c1c50475aa4619ec787550388455fa73cabe0f65b909a657010d63c969d9cd15&=)
 
+- `named.conf.local` `Heiter` <br>
+![named.conf.local_Heiter](https://cdn.discordapp.com/attachments/824131614073683968/1175802243459600505/image.png?ex=656c8e2c&is=655a192c&hm=c1464d979f2cf22d8c648d6bd6107282f2b303f944294150ae59287df737d75f&)
+
+- `named.conf.options` `Heiter` <br>
+![named.conf.options_Heiter](https://cdn.discordapp.com/attachments/824131614073683968/1175802561152958585/image.png?ex=656c8e77&is=655a1977&hm=5ebe0e2271ef82a2a87dd83afa5ee3d352c702b266e3fb09750cb1c6c3e27720&)
+
+- `riegel.canyon.i07.com` `Heiter` <br>
+![reigel.canyon.i07.com_Heiter](https://cdn.discordapp.com/attachments/824131614073683968/1175802380860796938/image.png?ex=656c8e4c&is=655a194c&hm=30d5804e9afabd89a430cbcac99765b5239c1311d8d4ddc514b8417a08cae520&)
+
 - `terminal` `Client` <br>
 ![terminal_client](https://media.discordapp.net/attachments/824131614073683968/1174696101182447716/image.png?ex=656887ff&is=655612ff&hm=9c1356f9b7d4319c221140d8e90da41e3348cb939afac1962d7a438b5f1d2df3&=)
+
+Explanation: <br>
+
+- First we edit the `dhcpd.conf` file in `/etc/dhcp/dhcpd.conf` of `Himmel`
+- We add option `broadcast-address 10.62.3.255;` and `option domain-name-servers 10.62.1.3;` to accomodate for clients in `switch 3`.
+- We add option `option broadcast-address 10.62.4.255;` and `option domain-name-servers 10.62.1.3;` to accomodate for clients in `switch 4`.
+- We also add `option domain-name-servers 10.62.1.3;` to set the `dns` as `Heiter`
+- We also install `dhcp-relay` and `dhcp-server` in `Aura` with `apt-get install isc-dhcp-relay -y` and `apt-get install isc-dhcp-server -y`
+- When `dhcp-relay` starts, it will ask for inputs and we enter `10.62.1.2` and `eth1 eth2 eth3 eth4`. When prompted for the third time we leave it blank.
+- In `Heiter` we edit the `bashrc` file and run `apt-get update -y`.
+- We also install `bind9` with `apt-get install bind9 -y`.
+- Then we edit `named.conf.local` adding a new `zone` `reigel.canyon.i07.com` with `type master` and the file directory being `/etc/bind/jarkom/riegel.canyon.i07.com`.
+- We then copy the `db.local` file to `/etc/bind/jarkom/` and rename it `riegel.canyon.i07.com`. In the file we alter it according to the image `riegel.canyon.i07.com` `Heiter` above. 
+Then we alter `named.conf.options` commenting `dnssec-validation auto` and adding `allow-query{any;};` and also uncommenting `forwarders` and putting `192.168.122.1` in it `IP Aura`.
+- With that done we can start `bind9` with `service bind9 restart`.
+- Finally we can check if its working by going to any client and pinging google 5 times with `ping -c 5 google.com`.
+
+
 ## Number 5
 ```
 Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch3 selama 3 menit sedangkan pada client yang melalui Switch4 selama 12 menit. Dengan waktu maksimal dialokasikan untuk peminjaman alamat IP selama 96 menit (5)
 ```
+
+Solution: <br>
+
 - `/etc/dhcp/dhcpd.conf`
 ```bash
 echo subnet 10.62.1.0 netmask 255.255.255.0 {
-}
-
-subnet 10.62.4.0 netmask 255.255.255.0 {
-    # range 10.62.4.12 10.62.4.20;
-    # range 10.62.4.160 10.62.4.168;
-    # option routers 10.62.4.1;
-    # option broadcast-address 10.62.4.255;
-    # option domain-name-servers 10.62.1.3;
-    default-lease-time 600;
-    max-lease-time 7200;
 }
 
 subnet 10.62.3.0 netmask 255.255.255.0 {
@@ -263,10 +299,26 @@ subnet 10.62.3.0 netmask 255.255.255.0 {
     # option routers 10.62.3.1;
     # option broadcast-address 10.62.3.255;
     # option domain-name-servers 10.62.1.3;
-    default-lease-time 600;
-    max-lease-time 7200; 
+    default-lease-time 180;
+    max-lease-time 5760; 
 }
+
+subnet 10.62.4.0 netmask 255.255.255.0 {
+    # range 10.62.4.12 10.62.4.20;
+    # range 10.62.4.160 10.62.4.168;
+    # option routers 10.62.4.1;
+    # option broadcast-address 10.62.4.255;
+    # option domain-name-servers 10.62.1.3;
+    default-lease-time 720;
+    max-lease-time 5760;
+}
+
 ```
+
+Explanation: <br>
+- We edit the `dhcpd.conf` file in `/etc/dhcp/dhcpd.conf` in `Himmel`
+- We add `defaul-lease-time 180` for `switch 3`, `3 * 60` and `default-lease-time 720` for `switch 4`, `12 * 60`
+- We also add `max-lease-time 5760;` for both `switch 3` and `switch 4` `96 * 60`
 
 ## Number 6
 ```
