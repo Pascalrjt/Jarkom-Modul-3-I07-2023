@@ -310,7 +310,9 @@ service nginx restart
 Jangan lupa tambahkan bash yang mengarah ke script diatas `bash ~/scriptVH.sh`
 - `terminal`
 Di worker jalankan `lynx localhost`, sedangkan di client bisa dijalankan `lynx 10.62.3.1` dimana ip tersebut merupakan ip dari PHP worker
+
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/9a8e3f30-064e-4e76-bc69-a7feb98924bf)
+
 ## Number 7
 ```
 Kepala suku dari Bredt Region memberikan resource server sebagai berikut:
