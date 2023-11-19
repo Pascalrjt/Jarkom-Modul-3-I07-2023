@@ -449,6 +449,7 @@ echo ' upstream worker {
     server 10.62.3.3;
 }
 ```
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/d98691be-b665-4606-9db4-2f50e58ab251)
 
 - Least-connection
 ```sh
