@@ -531,6 +531,23 @@ server {
 ```
 Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. (11) hint: (proxy_pass)
 ```
+
+- `.bashrc` Eisen
+```sh
+server {
+	...
+	location /its {
+		proxy_pass https://www.its.ac.id;
+	}
+	...
+}
+```
+- `client` run command `lynx 10.62.2.3/its` yang dimana merupakan ip load balancer dan ditambahkan routing milik its
+
+## Number 12
+```
+Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. (12) hint: (fixed in dulu clinetnya)
+```
 - `.bashrc` Eisen
 ```sh
 server {
@@ -554,10 +571,7 @@ iface eth0 inet static
 ```
 
 - `client` run command `lynx 10.62.2.3` yang dimana merupakan ip load balancer
-## Number 12
-```
-Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. (12) hint: (fixed in dulu clinetnya)
-```
+
 ## Number 13
 ```
 Semua data yang diperlukan, diatur pada Denken dan harus dapat diakses oleh Frieren, Flamme, dan Fern. (13)
