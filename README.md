@@ -400,9 +400,9 @@ echo 'options {
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/lb_php
 
 echo ' upstream worker {
-    server 10.62.3.1;
-    server 10.62.3.2;
-    server 10.62.3.3;
+    server 10.62.3.1 weight=8;
+    server 10.62.3.2 weight=4;
+    server 10.62.3.3 weight=1;
 }
 
 server {
@@ -444,9 +444,9 @@ Analisis (8)
 - Round Robin
 ```sh
 echo ' upstream worker {
-    server 10.62.3.1;
-    server 10.62.3.2;
-    server 10.62.3.3;
+    server 10.62.3.1 weight=8;
+    server 10.62.3.2 weight=4;
+    server 10.62.3.3 weight=1;
 }
 ```
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/d98691be-b665-4606-9db4-2f50e58ab251)
@@ -455,9 +455,9 @@ echo ' upstream worker {
 ```sh
 echo ' upstream worker {
     least_conn;
-    server 10.62.3.1;
-    server 10.62.3.2;
-    server 10.62.3.3;
+    server 10.62.3.1 weight=8;
+    server 10.62.3.2 weight=4;
+    server 10.62.3.3 weight=1;
 }
 ```
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/27d9b5ad-4368-4d51-883b-cd83763d0e3e)
@@ -466,9 +466,9 @@ echo ' upstream worker {
 ```sh
 echo ' upstream worker {
     ip_hash;
-    server 10.62.3.1;
-    server 10.62.3.2;
-    server 10.62.3.3;
+    server 10.62.3.1 weight=8;
+    server 10.62.3.2 weight=4;
+    server 10.62.3.3 weight=1;
 }
 ```
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/157fa803-f271-4d69-87df-166585e222ea)
@@ -477,25 +477,72 @@ echo ' upstream worker {
 ```sh
 echo ' upstream worker {
     hash $request_uri consistent;
-    server 10.62.3.1;
-    server 10.62.3.2;
-    server 10.62.3.3;
+    server 10.62.3.1 weight=8;
+    server 10.62.3.2 weight=4;
+    server 10.62.3.3 weight=1;
 }
 ```
 ![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/af8fc563-73bc-4e01-9666-e9749e026377)
+
+- Mean & Graph
+
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/bfe8af6f-117c-4e8c-9240-d18172e125e4)
 
 ## Number 9
 ```
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire. (9)
 ```
+- Graph from 3 Workers -> 2 Workers -> 1 Workers
+
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/aaf9ffc4-f8a0-4a8c-9381-75560c922a77)
+
 ## Number 10
 ```
 Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/ (10)
 ```
+- `~/.bashrc` Eisen
+```sh
+mkdir /etc/nginx/rahasisakita
+```
+```sh
+upstream worker {
+	server 10.62.3.1 weight=8;
+	server 10.62.3.2 weight=4;
+	server 10.62.3.3 weight=1;
+}
+
+server {
+	...code
+	auth_basic "Restricted Content";
+	auth_basic_user_file /etc/nginx/rahasisakita/.htpasswd;
+	...
+}
+```
+- run command `htpasswd -c /etc/nginx/rahasisakita/.htpasswd netics` dan juga isi password dengan `ajkyyy`
+- hasil
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/95e82dd0-c0fb-4b90-a4d3-f8ff70b9f884)
+
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/2bb8c6f1-6b1f-45a7-a21f-1dea5f86a92b)
+
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/9f1b9324-fb5e-486d-aa75-327510fbd916)
+
 ## Number 11
 ```
 Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. (11) hint: (proxy_pass)
 ```
+- `.bashrc` Eisen
+```sh
+server {
+	...
+	allow 10.62.3.111;
+	allow 10.62.3.222;
+	allow 10.62.4.111;
+	allow 10.62.4.222;
+	deny all;
+	...
+}
+```
+- Untuk testing, pastikan ip client diubah menjadi static dan disesuaikan dengan ip yang berada diatas
 ## Number 12
 ```
 Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. (12) hint: (fixed in dulu clinetnya)
