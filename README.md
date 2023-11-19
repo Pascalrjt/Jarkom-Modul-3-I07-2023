@@ -471,6 +471,7 @@ echo ' upstream worker {
     server 10.62.3.3;
 }
 ```
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/157fa803-f271-4d69-87df-166585e222ea)
 
 - Generic Hash
 ```sh
