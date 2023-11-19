@@ -379,7 +379,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 - run `ab -n 1000 -c 100 http://www.granz.channel.i07.com/ `
 
-![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/262c908b-d833-41c2-9b5e-a366f079661a)
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/9f150009-ecd0-42fe-8dba-121680c2af0d)
 
 ## Number 8
 ```
