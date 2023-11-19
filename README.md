@@ -441,8 +441,46 @@ Report hasil testing pada Apache Benchmark
 Grafik request per second untuk masing masing algoritma. 
 Analisis (8)
 ```
+- Round Robin
+```sh
+echo ' upstream worker {
+    server 10.62.3.1;
+    server 10.62.3.2;
+    server 10.62.3.3;
+}
+```
 
--
+- Least-connection
+```sh
+echo ' upstream worker {
+    least_conn;
+    server 10.62.3.1;
+    server 10.62.3.2;
+    server 10.62.3.3;
+}
+```
+![image](https://github.com/Pascalrjt/Jarkom-Modul-3-I07-2023/assets/89951546/27d9b5ad-4368-4d51-883b-cd83763d0e3e)
+
+- IP Hash
+```sh
+echo ' upstream worker {
+    ip_hash;
+    server 10.62.3.1;
+    server 10.62.3.2;
+    server 10.62.3.3;
+}
+```
+
+- Generic Hash
+```sh
+echo ' upstream worker {
+    hash $request_uri consistent;
+    server 10.62.3.1;
+    server 10.62.3.2;
+    server 10.62.3.3;
+}
+```
+
 ## Number 9
 ```
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire. (9)
